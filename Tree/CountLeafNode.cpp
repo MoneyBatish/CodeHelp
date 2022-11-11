@@ -1,4 +1,5 @@
 /////////////PREORDER TRAVERSAL ///////////////////
+
 void PreOrder(BinaryTreeNode<int>* root,int &count)
 {
     if(root==NULL)
@@ -18,7 +19,9 @@ int noOfLeafNodes(BinaryTreeNode<int> *root){
     PreOrder(root,count);
     return count;
 }
+
 ////////////INORDER TRAVERSAL//////////////////
+
 void InOrder(BinaryTreeNode<int>* root,int &count)
 {
     if(root==NULL)
@@ -36,5 +39,27 @@ int noOfLeafNodes(BinaryTreeNode<int> *root){
     // Write your code here.
     int count=0;
     InOrder(root,count);
+    return count;
+}
+
+///////////POST TRAVERSAL///////////////////////
+
+void PostOrder(BinaryTreeNode<int>* root,int &count)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    PostOrder(root->left,count);
+    PostOrder(root->right,count); 
+    if(root->left==NULL && root->right==NULL)
+    {
+        count++;
+    }
+}
+int noOfLeafNodes(BinaryTreeNode<int> *root){
+    // Write your code here.
+    int count=0;
+    PostOrder(root,count);
     return count;
 }
