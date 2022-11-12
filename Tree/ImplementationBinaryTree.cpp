@@ -117,13 +117,26 @@ class tree{
         cout<<root->data<<" ";
         InOrder(root->right);
     }
+    void PreOrder(Node *root){
+        if(root==NULL)
+        {
+            return;
+        }
+        cout<<root->data<<" ";
+        PreOrder(root->left);
+        PreOrder(root->right);
+    }
 };
 int main()
 {
+    //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     tree t;
     t.root=t.BuildTree(t.root);
     t.LevelOrderTraversal();
     t.ReversalOrderTraversal();
     cout<<endl;
     t.InOrder(t.root);
+    cout<<endl;
+    t.PreOrder(t.root);
+    cout<<endl;
 }
