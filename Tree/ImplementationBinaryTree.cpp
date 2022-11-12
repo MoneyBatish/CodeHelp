@@ -64,10 +64,55 @@ class tree{
             }
         }
     }
+    void ReversalOrderTraversal()
+    {
+        queue<Node*>q;
+        stack<Node*>s;
+        q.push(root);
+        q.push(NULL);
+        while(!q.empty())
+        {
+            Node *temp=q.front();
+            q.pop();
+            s.push(temp);
+            
+            if(temp==NULL)
+            {
+                if(!q.empty())
+                {
+                   q.push(NULL);
+                }
+            }
+            else{
+            if(temp->right)
+            {
+                q.push(temp->right);
+            }
+            if(temp->left)
+            {
+                q.push(temp->left);
+            }
+            
+            }
+        }
+        while(!s.empty())
+        {
+            Node *temp=s.top();
+            s.pop();
+            if(temp==NULL)
+            {
+                cout<<endl;
+            }
+            else{
+                cout<<temp->data<<" ";
+            }
+        }
+    }
 };
 int main()
 {
     tree t;
     t.root=t.BuildTree(t.root);
     t.LevelOrderTraversal();
+    t.ReversalOrderTraversal();
 }
