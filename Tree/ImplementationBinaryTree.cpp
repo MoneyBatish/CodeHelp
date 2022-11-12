@@ -126,6 +126,15 @@ class tree{
         PreOrder(root->left);
         PreOrder(root->right);
     }
+    void PostOrder(Node *root){
+        if(root==NULL)
+        {
+            return;
+        }
+        PostOrder(root->left);
+        PostOrder(root->right);
+        cout<<root->data<<" ";
+    }
 };
 int main()
 {
@@ -138,5 +147,7 @@ int main()
     t.InOrder(t.root);
     cout<<endl;
     t.PreOrder(t.root);
+    cout<<endl;
+    t.PostOrder(t.root);
     cout<<endl;
 }
