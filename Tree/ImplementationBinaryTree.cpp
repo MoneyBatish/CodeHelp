@@ -108,6 +108,15 @@ class tree{
             }
         }
     }
+    void InOrder(Node *root){
+        if(root==NULL)
+        {
+            return;
+        }
+        InOrder(root->left);
+        cout<<root->data<<" ";
+        InOrder(root->right);
+    }
 };
 int main()
 {
@@ -115,4 +124,6 @@ int main()
     t.root=t.BuildTree(t.root);
     t.LevelOrderTraversal();
     t.ReversalOrderTraversal();
+    cout<<endl;
+    t.InOrder(t.root);
 }
