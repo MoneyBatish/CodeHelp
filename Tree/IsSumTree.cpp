@@ -41,3 +41,46 @@ int sum(Node *root)
              return false;
          }
     }
+
+///////////////APPROACH 2///////////
+
+pair<bool,int>isSumTreeFast(Node* root)
+    {
+         // Your code here
+         if(root==NULL)
+         {
+             pair<bool,int>p=make_pair(true,0);
+             return p;
+         }
+         if(root->left==NULL && root->right==NULL)
+         {
+             pair<bool,int>p=make_pair(true,root->data);
+             return p;
+         }
+         
+         pair<bool,int>leftAns=isSumTreeFast(root->left);
+         pair<bool,int>rightAns=isSumTreeFast(root->right);
+         
+         bool isLeft=leftAns.first;
+         bool isRight=rightAns.first;
+         
+         int leftSum=leftAns.second;
+         int rightSum=rightAns.second;
+         
+         bool cond=leftSum+rightSum==root->data;
+         
+         pair<bool,int>ans;
+         ans.second=leftSum+rightSum+root->data;
+         if(isLeft && isRight && cond)
+         {
+             ans.first=true;
+         }
+         else{
+             ans.first=false;
+         }
+         return ans;
+    }
+    bool isSumTree(Node *root)
+    {
+        return isSumTreeFast(root).first;
+    }
