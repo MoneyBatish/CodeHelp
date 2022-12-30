@@ -100,6 +100,68 @@ Node *insertIntoTree(Node *root,int data)
     }
     return root;
 }
+Node * minValue(Node *root)
+{
+    if(root==NULL)
+    {
+        return NULL;
+    }
+    while(root->left!=NULL)
+    {
+        root=root->left;
+    }
+    return root;
+}
+Node * deleteNode(Node *root ,int data)
+{
+    if(root==NULL)
+    {
+        return NULL;
+    }
+
+    if(root->data==data)
+    {
+        //0 Child
+        if(root->left==NULL && root->right==NULL)
+        {
+            delete root;
+            return NULL;
+        }
+        //1 child
+
+        //left child
+        if(root->left!=NULL && root->right==NULL)
+        {
+            Node *temp=root->left;
+            delete root;
+            return temp;
+        }
+
+        //right child
+        //left child
+        if(root->left==NULL && root->right!=NULL)
+        {
+            Node *temp=root->right;
+            delete root;
+            return temp;
+        }
+        //2 child
+        if(root->left != NULL && root->right !=NULL)
+        {
+            int mini=minValue(root->right)->data;
+            root->data=mini;
+            root->right=deleteNode(root->right,mini);
+        }
+    }
+    else if(root->data>data)
+    {
+        root->left=deleteNode(root->left,data);
+    }
+    else{
+        root->right=deleteNode(root->right,data);
+    }
+    return root;
+}
 void takeInput(Node *&root)
 {
     int data;
@@ -116,6 +178,10 @@ int main()
     cout<<"Enter data in Binary Search Tree"<<endl;
 
     takeInput(root);
-    //levelOrderTraversal(root);
-    MorrisTraversal(root);
+    levelOrderTraversal(root);
+    //MorrisTraversal(root);
+    int del;
+    cin>>del;
+    deleteNode(root,del);
+    levelOrderTraversal(root);
 }
