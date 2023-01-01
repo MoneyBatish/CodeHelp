@@ -17,3 +17,20 @@ TreeNode<int>* LCAinaBST(TreeNode<int>* root, TreeNode<int>* P, TreeNode<int>* Q
     }
     return root;
 }  
+
+/// ITERATIVE APPROACH
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        while(root!=NULL)
+        {
+            if(root->val>p->val && root->val>q->val){
+                root=root->left;
+            }
+            else if(root->val<p->val && root->val<q->val){
+                root=root->right;
+            }
+            else{
+                return root;
+            }
+        }
+        return NULL;
+    }
