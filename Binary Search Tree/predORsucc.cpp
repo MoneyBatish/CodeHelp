@@ -33,3 +33,45 @@ pair<int,int> predecessorSuccessor(BinaryTreeNode<int>* root, int key)
     pair<int,int>ans=make_pair(pred,succ);
     return ans;
 }
+
+
+//apni Approach
+int predecessor(BinaryTreeNode<int>* root,int key)
+{
+    int ans=-1;
+    while(root!=NULL)
+    {
+        if(root->data>=key)
+        {
+            root=root->left;
+        }
+        else{
+            ans=root->data;
+            root=root->right;
+        }
+    }
+    return ans;
+}
+int successor(BinaryTreeNode<int>* root,int key)
+{
+    int ans=-1;
+    while(root!=NULL)
+    {
+        if(root->data>key)
+        {
+            ans=root->data;
+            root=root->left;
+        }
+        else{
+            root=root->right;
+        }
+    }
+    return ans;
+}
+pair<int,int> predecessorSuccessor(BinaryTreeNode<int>* root, int key)
+{
+    // Write your code here.
+    int pred=predecessor(root,key);
+    int succ=successor(root,key);
+    return make_pair(pred,succ);
+}
