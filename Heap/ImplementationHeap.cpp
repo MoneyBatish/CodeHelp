@@ -29,7 +29,17 @@ class Heap{
             }
         }
     }
+    void deleteFromHeap()
+    {
+        if(size==0)
+        {
+            cout<<"Delete Nahi Hunda"<<endl;
+        }
 
+        arr[1]=arr[size];
+        size--;
+        
+    }
     void printArray(){
         for(int i=1;i<=size;i++)
         {
