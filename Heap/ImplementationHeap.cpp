@@ -29,6 +29,29 @@ class Heap{
             }
         }
     }
+    void Heapify(int i)
+    {
+        int largest=i;
+        int left=2*i;
+        int right=2*i + 1;
+        if(left<=size && arr[left]>arr[largest])
+        {
+            largest=left;
+        }
+        if(right<=size && arr[right]>arr[largest])
+        {
+            largest=right;
+        }
+
+        if(largest!=i)
+        {
+            swap(arr[largest],arr[i]);
+            Heapify(largest);
+        }
+        else{
+            return;
+        }
+    }
     void deleteFromHeap()
     {
         if(size==0)
@@ -38,7 +61,7 @@ class Heap{
 
         arr[1]=arr[size];
         size--;
-        
+        Heapify(1);
     }
     void printArray(){
         for(int i=1;i<=size;i++)
@@ -87,5 +110,6 @@ int main()
     H.insert(70);
     H.insert(45);
     H.insert(34);
+    H.deleteFromHeap();
     H.printLVL();
 }
