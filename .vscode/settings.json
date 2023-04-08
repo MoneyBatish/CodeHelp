@@ -10,6 +10,7 @@
         "string": "cpp",
         "string_view": "cpp",
         "ranges": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "unordered_map": "cpp"
     }
 }
